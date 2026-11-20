@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8fb">
+  <title>お支払い｜KOKOIKO TRIP</title>
+  <style>
+    :root{--ink:#493846;--muted:#8d7b8a;--paper:#fff8fb;--white:#fff;--pink:#d94f8d;--line:#f0dce7;--lilac:#c98be8;--shadow:0 12px 34px #b0679118}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP","Yu Gothic",Meiryo,sans-serif;line-height:1.7}.wrap{width:min(100% - 32px,680px);margin:auto}.header{height:62px;display:flex;align-items:center;justify-content:space-between}.brand{font:700 19px Georgia,serif;letter-spacing:.12em;color:var(--pink)}.test{display:none;padding:4px 10px;border-radius:99px;background:#fff0c9;color:#805914;font-size:11px;font-weight:700}.main{padding:16px 0 45px}.back{display:inline-block;color:var(--muted);font-size:13px;text-decoration:none;margin:0 0 14px}.heading h1{font:500 29px/1.4 Georgia,"Noto Serif JP",serif;margin:3px 0 5px}.heading p{font-size:13px;color:var(--muted);margin:0 0 20px}.card{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:18px;margin:14px 0;box-shadow:var(--shadow)}.product{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}.product h2{font-size:16px;line-height:1.55;margin:0 0 4px}.product p{font-size:12px;color:var(--muted);margin:0}.amount{color:var(--pink);font-size:18px;font-weight:800;white-space:nowrap}.amount small{display:block;text-align:right;font-size:10px;color:var(--muted);font-weight:500}.section-title{font-size:16px;margin:0 0 12px}.total{display:flex;justify-content:space-between;font-size:14px;font-weight:700;padding-top:12px;border-top:1px solid var(--line)}#payment-method,#agreement{min-height:30px}.button{width:100%;border:0;border-radius:999px;padding:15px 18px;margin-top:14px;background:linear-gradient(115deg,#ee7da5,#cc8be5);color:white;font-size:15px;font-weight:700;box-shadow:0 8px 18px #d978a433;cursor:pointer}.button:disabled{opacity:.55;cursor:wait}.help{color:var(--muted);font-size:11px;margin:10px 0 0}.error{display:none;background:#fff0f0;border:1px solid #f3cccc;color:#9f3535;border-radius:12px;padding:12px;font-size:13px;margin:14px 0}.business{font-size:11px;color:var(--muted);line-height:1.9}.business dl{display:grid;grid-template-columns:120px 1fr;gap:4px 10px;margin:0}.business dt{font-weight:700}.business dd{margin:0;overflow-wrap:anywhere}.business a{color:#a34f7d}.footer{border-top:1px solid var(--line);padding:20px 0 34px}.field{margin:14px 0}.field label,.field .label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}.field input{width:100%;padding:13px 14px;border:1px solid #edcfde;border-radius:12px;background:#fff;color:var(--ink);font:inherit}.field input:focus{outline:2px solid #edb0cc;border-color:var(--pink)}.field small,.hint{font-size:11px;color:var(--muted)}.people{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}.counter{display:flex;align-items:center;gap:15px}.counter button{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--ink);font-size:18px}.cancel{background:#fff4ec;border:1px solid #f4dfd2;border-radius:14px;padding:14px;font-size:12px}.loading{font-size:13px;color:var(--muted);text-align:center;padding:18px}@media(max-width:420px){.product{display:block}.amount{margin-top:10px}.amount small{text-align:left}.business dl{grid-template-columns:105px 1fr}}
+      .total{align-items:center;padding-top:8px;border:0}#total{font-size:23px;color:var(--pink);font-weight:800}.payment-summary{padding:22px;border-radius:24px}.cancel{padding:2px 0 10px;border:0;background:transparent;color:var(--muted);font-size:12px;line-height:1.8}.cancel strong{display:block;color:#64546f;font-size:17px;font-weight:500;margin-bottom:10px}.unit-line{font-size:12px;color:var(--muted);margin:4px 0 0}.payment-summary .button{padding:17px 18px;margin-top:16px;background:linear-gradient(110deg,#ef79a6,#c981e5)}.payment-summary .help{padding:12px;background:#fff4e7;border-radius:13px;color:#8b715e}
+  </style>
+  <script src="https://js.tosspayments.com/v2/standard"></script>
+</head>
+<body>
+  <div class="wrap">
+    <header class="header"><a class="brand" href="/">KOKOIKO TRIP</a><span class="test" id="test-mode">テストモード</span></header>
+    <main class="main">
+      <a class="back" href="/">← 商品ページに戻る</a>
+      <div class="heading"><h1>お支払いのお手続き</h1><p>商品内容と金額をご確認のうえ、お支払い方法をお選びください。</p></div>
+      <div class="error" id="error" role="alert"></div>
+      <section class="card product"><div><h2 id="product-name">商品を確認しています</h2><p>消費税込みの料金です。</p></div><div class="amount"><span id="amount">—</span><small>KRW・税込／大人1名</small></div></section>
+      <section class="card"><h2 class="section-title">ご希望日・ご参加人数</h2><div class="field"><label for="date">参加日</label><input id="date" type="date" required><small id="date-display">日付を選択してください。</small></div><div class="people"><span>大人（2歳以上）</span><div class="counter"><button type="button" data-count="adult" data-delta="-1" aria-label="大人を1名減らす">−</button><b id="adult-count">1</b><button type="button" data-count="adult" data-delta="1" aria-label="大人を1名増やす">＋</button></div></div><div class="people"><span>2歳未満のお子様</span><div class="counter"><button type="button" data-count="infant" data-delta="-1" aria-label="幼児を1名減らす">−</button><b id="infant-count">0</b><button type="button" data-count="infant" data-delta="1" aria-label="幼児を1名増やす">＋</button></div></div><p class="hint">2歳未満のお子様は無料です。</p></section>
+      <section class="card"><h2 class="section-title">ご連絡先</h2><div class="field"><label for="name">お名前</label><input id="name" autocomplete="name" placeholder="例：山田 花子" required></div><div class="field"><label for="phone">電話番号（ハイフンなし）</label><input id="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="例：09012345678" required><small>数字のみでご入力ください。</small></div><div class="field"><label for="line">LINE ID</label><input id="line" autocomplete="off" placeholder="LINE IDをご入力ください"></div><div class="field"><label for="email">メールアドレス</label><input id="email" type="email" autocomplete="email" placeholder="例：hello@example.com" required></div></section>
+      <section class="card payment-summary"><div class="cancel"><strong>キャンセル規定</strong>出発日の3日前までのキャンセルは全額返金いたします。それ以降は返金いたしかねます。天災、参加者ご本人または一親等ご家族のご逝去の場合は、キャンセル料を免除いたします。</div><div class="total"><span>お支払い合計（税込）</span><span id="total">—</span></div><p class="unit-line">大人 <span id="adult-summary">1</span>名 × <span id="unit-amount">—</span>（税込）</p><button class="button" id="pay" type="button" disabled>決済情報を準備しています</button><p class="help">オンライン決済（クレジットカード・銀行振込）。</p></section>
+    </main>
+    <footer class="footer business"><h2 class="section-title">事業者情報</h2><dl>
+      <dt>商号</dt><dd>{商号}</dd><dt>代表者</dt><dd>{代表者}</dd><dt>事業者登録番号</dt><dd>{事業者登録番号}</dd><dt>通信販売業届出番号</dt><dd>{通信販売業届出番号}</dd><dt>所在地</dt><dd>{住所}</dd><dt>お問い合わせ</dt><dd>{連絡先}</dd>
+      <dt>ご案内</dt><dd><a href="{利用規約URL}">利用規約</a> · <a href="{個人情報保護方針URL}">個人情報保護方針</a> · <a href="{返金ポリシーURL}">返金ポリシー</a></dd>
+    </dl></footer>
+  </div>
+  <script>
+    (() => {
+      const params = new URLSearchParams(location.search);
+      const productId = params.get('productId');
+      const errorBox = document.getElementById('error');
+      const payButton = document.getElementById('pay');
+      let widgets;
+      let order;
+      let unitAmount = 0;
+      let adultCount = 1;
+      let infantCount = 0;
+
+      function showError(message) {
+        errorBox.textContent = message;
+        errorBox.style.display = 'block';
+        payButton.disabled = true;
+        payButton.textContent = 'お支払いを準備できません';
+      }
+
+      async function initialize() {
+        try {
+          if (location.protocol === 'file:') {
+            throw new Error('この決済ページはファイルから直接開けません。Vercelにデプロイするか、プロジェクトフォルダーで「npx vercel dev」を実行して開いてください。');
+          }
+          if (!productId) throw new Error('商品情報がありません。商品ページからお進みください。');
+          if (!['gangneung', 'jeonju-damyang', 'danyang'].includes(productId)) throw new Error('商品情報を確認できません。商品ページからお進みください。');
+          const dateInput = document.getElementById('date');
+          const localToday = new Date();
+          dateInput.min = `${localToday.getFullYear()}-${String(localToday.getMonth()+1).padStart(2,'0')}-${String(localToday.getDate()).padStart(2,'0')}`;
+          const configResponse = await fetch('/api/config', { cache: 'no-store' });
+          const config = await configResponse.json();
+          if (!configResponse.ok) throw new Error(config.error?.message || '決済設定を確認できません。');
+          if (config.testMode) document.getElementById('test-mode').style.display = 'inline-block';
+
+          const orderResponse = await fetch('/api/order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ productId, adultCount: 1 }),
+          });
+          order = await orderResponse.json();
+          if (!orderResponse.ok) throw new Error(order.error?.message || '注文を作成できませんでした。');
+
+          document.getElementById('product-name').textContent = order.orderName;
+          unitAmount = order.unitAmount;
+          updateTotal();
+
+          const tossPayments = TossPayments(config.clientKey);
+          widgets = tossPayments.widgets({ customerKey: TossPayments.ANONYMOUS });
+          await widgets.setAmount({ value: adultCount * unitAmount, currency: 'KRW' });
+          await Promise.all([
+            widgets.renderPaymentMethods({ selector: '#payment-method', variantKey: 'DEFAULT' }),
+            widgets.renderAgreement({ selector: '#agreement', variantKey: 'AGREEMENT' }),
+          ]);
+          payButton.disabled = false;
+          payButton.textContent = 'お支払いに進む';
+        } catch (error) {
+          showError(error.message || '決済画面を準備できませんでした。');
+        }
+      }
+
+      function updateTotal() {
+        if (!unitAmount) return;
+        const total = adultCount * unitAmount;
+        const formattedUnit = `₩${new Intl.NumberFormat('ja-JP').format(unitAmount)}`;
+        const formattedTotal = `₩${new Intl.NumberFormat('ja-JP').format(total)}`;
+        document.getElementById('amount').textContent = formattedUnit;
+        document.getElementById('unit-amount').textContent = formattedUnit;
+        document.getElementById('total').textContent = formattedTotal;
+        document.getElementById('adult-count').textContent = adultCount;
+        document.getElementById('adult-summary').textContent = adultCount;
+        document.getElementById('infant-count').textContent = infantCount;
+      }
+
+      document.querySelectorAll('[data-count]').forEach((button) => button.addEventListener('click', () => {
+        const delta = Number(button.dataset.delta);
+        if (button.dataset.count === 'adult') adultCount = Math.max(1, Math.min(10, adultCount + delta));
+        else infantCount = Math.max(0, Math.min(10, infantCount + delta));
+        updateTotal();
+      }));
+
+      document.getElementById('date').addEventListener('change', (event) => {
+        if (!event.target.value) return;
+        const picked = new Date(`${event.target.value}T00:00:00`);
+        document.getElementById('date-display').textContent = new Intl.DateTimeFormat('ja-JP', {
+          year: 'numeric', month: 'long', day: 'numeric', weekday: 'short',
+        }).format(picked);
+      });
+
+      document.getElementById('phone').addEventListener('input', (event) => {
+        event.target.value = event.target.value.replace(/[^0-9]/g, '').slice(0, 15);
+      });
+
+      function validateReservation() {
+        const date = document.getElementById('date');
+        const name = document.getElementById('name');
+        const phone = document.getElementById('phone');
+        const email = document.getElementById('email');
+        if (!date.value) { date.reportValidity(); return false; }
+        if (name.value.trim().length < 2) { name.setCustomValidity('お名前を2文字以上でご入力ください。'); name.reportValidity(); name.setCustomValidity(''); return false; }
+        if (!/^[0-9]{9,15}$/.test(phone.value)) { phone.setCustomValidity('電話番号はハイフンなしの数字9～15桁でご入力ください。'); phone.reportValidity(); phone.setCustomValidity(''); return false; }
+        if (!email.validity.valid) { email.reportValidity(); return false; }
+        return true;
+      }
+
+      payButton.addEventListener('click', async () => {
+        if (!widgets || !order || !validateReservation()) return;
+        payButton.disabled = true;
+        payButton.textContent = '金額を確認しています';
+        try {
+          const orderResponse = await fetch('/api/order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ productId, adultCount }),
+          });
+          const newOrder = await orderResponse.json();
+          if (!orderResponse.ok) throw new Error(newOrder.error?.message || '注文を作成できませんでした。');
+          order = newOrder;
+          await widgets.setAmount({ value: order.amount, currency: 'KRW' });
+          payButton.textContent = '決済画面へ移動しています';
+          await widgets.requestPayment({
+            orderId: order.orderId,
+            orderName: order.orderName,
+            successUrl: `${location.origin}/success.html`,
+            failUrl: `${location.origin}/fail.html?productId=${encodeURIComponent(productId)}`,
+          });
+        } catch (error) {
+          showError(error.message || '決済を開始できませんでした。もう一度お試しください。');
+          payButton.disabled = false;
+          payButton.textContent = 'お支払いに進む';
+        }
+      });
+
+      initialize();
+    })();
+  </script>
+</body>
+</html>

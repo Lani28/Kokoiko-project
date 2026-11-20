@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fff8fb"><title>決済確認｜KOKOIKO TRIP</title>
+<style>:root{--ink:#493846;--muted:#8d7b8a;--paper:#fff8fb;--pink:#d94f8d;--line:#f0dce7}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP","Yu Gothic",Meiryo,sans-serif;line-height:1.7}.card{width:min(100% - 32px,560px);margin:12vh auto;background:white;border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:0 12px 34px #b0679118;text-align:center}h1{font:500 28px Georgia,"Noto Serif JP",serif}p{font-size:14px;color:var(--muted)}.status{font-size:13px;margin:18px 0}.button{display:inline-block;padding:12px 24px;border-radius:99px;background:linear-gradient(115deg,#ee7da5,#cc8be5);color:white;text-decoration:none;font-weight:700}</style></head>
+<body><main class="card"><p>KOKOIKO TRIP</p><h1 id="title">お支払いを確認しています</h1><div class="status" id="status">決済結果を確認しています。画面を閉じずにお待ちください。</div><p id="order"></p><a class="button" href="/">トップページへ戻る</a></main>
+<script>
+  (async () => {
+    const params = new URLSearchParams(location.search);
+    const paymentKey = params.get('paymentKey');
+    const orderId = params.get('orderId');
+    const amount = Number(params.get('amount'));
+    const title = document.getElementById('title');
+    const status = document.getElementById('status');
+    if (!paymentKey || !orderId || !Number.isSafeInteger(amount)) {
+      title.textContent = '決済情報を確認できません';
+      status.textContent = '決済情報が不足しています。お問い合わせください。';
+      return;
+    }
+    try {
+      const response = await fetch('/api/confirm', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ paymentKey, orderId, amount }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error?.message || '決済を確認できませんでした。');
+      if (result.status === 'DONE') {
+        title.textContent = 'お支払いが完了しました';
+        status.textContent = 'ご予約ありがとうございます。決済が正常に承認されました。';
+      } else if (result.status === 'WAITING_FOR_DEPOSIT') {
+        title.textContent = 'お申し込みを受け付けました';
+        status.textContent = 'お振り込みの確認後に、ご予約が確定します。';
+      } else {
+        title.textContent = '決済状況を確認しています';
+        status.textContent = '決済状況を確認できません。お問い合わせください。';
+      }
+      document.getElementById('order').textContent = result.orderName || '';
+    } catch (error) {
+      title.textContent = '決済を確認できませんでした';
+      status.textContent = error.message || '決済状況を確認できません。お問い合わせください。';
+    }
+  })();
+</script></body></html>

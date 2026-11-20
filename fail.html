@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fff8fb"><title>決済エラー｜KOKOIKO TRIP</title>
+<style>:root{--ink:#493846;--muted:#8d7b8a;--paper:#fff8fb;--line:#f0dce7}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP","Yu Gothic",Meiryo,sans-serif;line-height:1.7}.card{width:min(100% - 32px,560px);margin:12vh auto;background:white;border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:0 12px 34px #b0679118}h1{font:500 28px Georgia,"Noto Serif JP",serif}.muted{color:var(--muted);font-size:13px;overflow-wrap:anywhere}.button{display:inline-block;margin-top:14px;padding:12px 24px;border-radius:99px;background:linear-gradient(115deg,#ee7da5,#cc8be5);color:white;text-decoration:none;font-weight:700}</style></head>
+<body><main class="card"><p>KOKOIKO TRIP</p><h1>お支払いを完了できませんでした</h1><p>決済は承認されていません。内容をご確認のうえ、もう一度お試しください。</p><p>エラーコード：<span class="muted" id="code">—</span></p><p>詳細：<span class="muted" id="message">—</span></p><a class="button" id="retry" href="/">商品ページへ戻る</a></main>
+<script>
+  const params = new URLSearchParams(location.search);
+  document.getElementById('code').textContent = params.get('code') || '不明';
+  document.getElementById('message').textContent = params.get('message') || 'エラーの詳細はありません。';
+  const productId = params.get('productId');
+  if (productId && /^[a-z0-9-]+$/.test(productId)) document.getElementById('retry').href = `/checkout.html?productId=${encodeURIComponent(productId)}`;
+</script></body></html>
