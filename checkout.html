@@ -8,7 +8,7 @@
   <style>
     :root{--ink:#493846;--muted:#8d7b8a;--paper:#fff8fb;--white:#fff;--pink:#d94f8d;--line:#f0dce7;--lilac:#c98be8;--shadow:0 12px 34px #b0679118}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP","Yu Gothic",Meiryo,sans-serif;line-height:1.7}.wrap{width:min(100% - 32px,680px);margin:auto}.header{height:62px;display:flex;align-items:center;justify-content:space-between}.brand{font:700 19px Georgia,serif;letter-spacing:.12em;color:var(--pink)}.test{display:none;padding:4px 10px;border-radius:99px;background:#fff0c9;color:#805914;font-size:11px;font-weight:700}.main{padding:16px 0 45px}.back{display:inline-block;color:var(--muted);font-size:13px;text-decoration:none;margin:0 0 14px}.heading h1{font:500 29px/1.4 Georgia,"Noto Serif JP",serif;margin:3px 0 5px}.heading p{font-size:13px;color:var(--muted);margin:0 0 20px}.card{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:18px;margin:14px 0;box-shadow:var(--shadow)}.product{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}.product h2{font-size:16px;line-height:1.55;margin:0 0 4px}.product p{font-size:12px;color:var(--muted);margin:0}.amount{color:var(--pink);font-size:18px;font-weight:800;white-space:nowrap}.amount small{display:block;text-align:right;font-size:10px;color:var(--muted);font-weight:500}.section-title{font-size:16px;margin:0 0 12px}.total{display:flex;justify-content:space-between;font-size:14px;font-weight:700;padding-top:12px;border-top:1px solid var(--line)}#payment-method,#agreement{min-height:30px}.button{width:100%;border:0;border-radius:999px;padding:15px 18px;margin-top:14px;background:linear-gradient(115deg,#ee7da5,#cc8be5);color:white;font-size:15px;font-weight:700;box-shadow:0 8px 18px #d978a433;cursor:pointer}.button:disabled{opacity:.55;cursor:wait}.help{color:var(--muted);font-size:11px;margin:10px 0 0}.error{display:none;background:#fff0f0;border:1px solid #f3cccc;color:#9f3535;border-radius:12px;padding:12px;font-size:13px;margin:14px 0}.business{font-size:11px;color:var(--muted);line-height:1.9}.business dl{display:grid;grid-template-columns:120px 1fr;gap:4px 10px;margin:0}.business dt{font-weight:700}.business dd{margin:0;overflow-wrap:anywhere}.business a{color:#a34f7d}.footer{border-top:1px solid var(--line);padding:20px 0 34px}.field{margin:14px 0}.field label,.field .label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}.field input{width:100%;padding:13px 14px;border:1px solid #edcfde;border-radius:12px;background:#fff;color:var(--ink);font:inherit}.field input:focus{outline:2px solid #edb0cc;border-color:var(--pink)}.field small,.hint{font-size:11px;color:var(--muted)}.people{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}.counter{display:flex;align-items:center;gap:15px}.counter button{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--ink);font-size:18px}.cancel{background:#fff4ec;border:1px solid #f4dfd2;border-radius:14px;padding:14px;font-size:12px}.loading{font-size:13px;color:var(--muted);text-align:center;padding:18px}@media(max-width:420px){.product{display:block}.amount{margin-top:10px}.amount small{text-align:left}.business dl{grid-template-columns:105px 1fr}}
       .total{align-items:center;padding-top:8px;border:0}#total{font-size:23px;color:var(--pink);font-weight:800}.payment-summary{padding:22px;border-radius:24px}.cancel{padding:2px 0 10px;border:0;background:transparent;color:var(--muted);font-size:12px;line-height:1.8}.cancel strong{display:block;color:#64546f;font-size:17px;font-weight:500;margin-bottom:10px}.unit-line{font-size:12px;color:var(--muted);margin:4px 0 0}.payment-summary .button{padding:17px 18px;margin-top:16px;background:linear-gradient(110deg,#ef79a6,#c981e5)}.payment-summary .help{padding:12px;background:#fff4e7;border-radius:13px;color:#8b715e}
-  </style>
+      #date{display:none}.date-picker{width:100%;min-width:0;min-height:52px;padding:12px 14px;border:1px solid #edcfde;border-radius:13px;background:#fff;color:var(--ink);font:inherit;text-align:left;display:flex;align-items:center;justify-content:space-between;cursor:pointer}.date-picker:focus-visible,.calendar-header button:focus-visible,.calendar-days button:focus-visible{outline:3px solid #edb0cc;outline-offset:2px}.date-picker-icon{font-size:22px;color:var(--pink);line-height:1}.calendar-panel{display:block;width:100%;max-width:100%;min-width:0;overflow:hidden;margin-top:10px;padding:12px;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 8px 22px #6c3e5514}.calendar-panel[hidden]{display:none}.calendar-header{display:grid;grid-template-columns:40px 1fr 40px;align-items:center;text-align:center;margin-bottom:9px}.calendar-header strong{font-size:15px}.calendar-header button{width:36px;height:36px;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--ink);font-size:23px;line-height:1;cursor:pointer}.calendar-header button:disabled{opacity:.35;cursor:not-allowed}.calendar-weekdays,.calendar-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;width:100%;text-align:center}.calendar-weekdays{margin-bottom:4px;color:var(--muted);font-size:11px}.calendar-weekdays span:first-child{color:#d4668e}.calendar-days button,.calendar-days span{min-width:0;width:100%;aspect-ratio:1;display:grid;place-items:center;border:0;border-radius:50%;background:transparent;color:var(--ink);font-size:13px}.calendar-days button{cursor:pointer}.calendar-days button:disabled{color:#d5cbd1;cursor:not-allowed}.calendar-days button:not(:disabled):hover{background:#fff0f6}.calendar-days button.is-today{box-shadow:inset 0 0 0 1px #e7a0bc}.calendar-days button.is-selected{background:var(--pink);color:#fff;font-weight:700}.calendar-days button:nth-child(7n + 1){color:#d4668e}.calendar-days button.is-selected:nth-child(7n + 1){color:#fff}.date-error{display:block;color:#b43855;margin-top:5px}</style>
   <script src="https://js.tosspayments.com/v2/standard"></script>
 </head>
 <body>
@@ -19,7 +19,7 @@
       <div class="heading"><h1>お支払いのお手続き</h1><p>商品内容と金額をご確認のうえ、お支払い方法をお選びください。</p></div>
       <div class="error" id="error" role="alert"></div>
       <section class="card product"><div><h2 id="product-name">商品を確認しています</h2><p>消費税込みの料金です。</p></div><div class="amount"><span id="amount">—</span><small>KRW・税込／大人1名</small></div></section>
-      <section class="card"><h2 class="section-title">ご希望日・ご参加人数</h2><div class="field"><label for="date">参加日</label><input id="date" type="date" required><small id="date-display">日付を選択してください。</small></div><div class="people"><span>大人（2歳以上）</span><div class="counter"><button type="button" data-count="adult" data-delta="-1" aria-label="大人を1名減らす">−</button><b id="adult-count">1</b><button type="button" data-count="adult" data-delta="1" aria-label="大人を1名増やす">＋</button></div></div><div class="people"><span>2歳未満のお子様</span><div class="counter"><button type="button" data-count="infant" data-delta="-1" aria-label="幼児を1名減らす">−</button><b id="infant-count">0</b><button type="button" data-count="infant" data-delta="1" aria-label="幼児を1名増やす">＋</button></div></div><p class="hint">2歳未満のお子様は無料です。</p></section>
+      <section class="card"><h2 class="section-title">ご希望日・ご参加人数</h2><div class="field date-field"><span class="label">参加日</span><input id="date" type="hidden"><button type="button" id="date-picker-button" class="date-picker" aria-haspopup="dialog" aria-expanded="false" aria-controls="calendar-panel"><span id="date-picker-label">日付を選択してください。</span><span class="date-picker-icon" aria-hidden="true">▦</span></button><div id="calendar-panel" class="calendar-panel" role="dialog" aria-label="参加日を選択" hidden><div class="calendar-header"><button type="button" id="calendar-prev" aria-label="前の月">‹</button><strong id="calendar-month"></strong><button type="button" id="calendar-next" aria-label="次の月">›</button></div><div class="calendar-weekdays" aria-hidden="true"><span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span></div><div id="calendar-days" class="calendar-days" role="grid" aria-label="日付"></div></div><small id="date-display" aria-live="polite">日付を選択してください。</small><small id="date-error" class="date-error" role="alert" hidden>参加日を選択してください。</small></div><div class="people"><span>大人（2歳以上）</span><div class="counter"><button type="button" data-count="adult" data-delta="-1" aria-label="大人を1名減らす">−</button><b id="adult-count">1</b><button type="button" data-count="adult" data-delta="1" aria-label="大人を1名増やす">＋</button></div></div><div class="people"><span>2歳未満のお子様</span><div class="counter"><button type="button" data-count="infant" data-delta="-1" aria-label="幼児を1名減らす">−</button><b id="infant-count">0</b><button type="button" data-count="infant" data-delta="1" aria-label="幼児を1名増やす">＋</button></div></div><p class="hint">2歳未満のお子様は無料です。</p></section>
       <section class="card"><h2 class="section-title">ご連絡先</h2><div class="field"><label for="name">お名前</label><input id="name" autocomplete="name" placeholder="例：山田 花子" required></div><div class="field"><label for="phone">電話番号（ハイフンなし）</label><input id="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="例：09012345678" required><small>数字のみでご入力ください。</small></div><div class="field"><label for="line">LINE ID</label><input id="line" autocomplete="off" placeholder="LINE IDをご入力ください" required></div><div class="field"><label for="email">メールアドレス</label><input id="email" type="email" autocomplete="email" placeholder="例：hello@example.com" required></div></section>
       <section class="card payment-summary"><div class="cancel"><strong>キャンセル規定</strong>出発日の3日前までのキャンセルは全額返金いたします。それ以降は返金いたしかねます。天災、参加者ご本人または一親等ご家族のご逝去の場合は、キャンセル料を免除いたします。</div><div class="total"><span>お支払い合計（税込）</span><span id="total">—</span></div><p class="unit-line">大人 <span id="adult-summary">1</span>名 × <span id="unit-amount">—</span>（税込）</p>
         <section class="card">
@@ -41,6 +41,13 @@
       let unitAmount = 0;
       let adultCount = 1;
       let infantCount = 0;
+      const dateInput = document.getElementById('date');
+      const datePickerButton = document.getElementById('date-picker-button');
+      const calendarPanel = document.getElementById('calendar-panel');
+      const calendarMonth = document.getElementById('calendar-month');
+      const calendarDays = document.getElementById('calendar-days');
+      let todayValue = '';
+      let displayedMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
 
       function showError(message) {
         errorBox.textContent = message;
@@ -56,9 +63,11 @@
           }
           if (!productId) throw new Error('商品情報がありません。商品ページからお進みください。');
           if (!['gangneung', 'jeonju-damyang', 'danyang'].includes(productId)) throw new Error('商品情報を確認できません。商品ページからお進みください。');
-          const dateInput = document.getElementById('date');
           const localToday = new Date();
-          dateInput.min = `${localToday.getFullYear()}-${String(localToday.getMonth()+1).padStart(2,'0')}-${String(localToday.getDate()).padStart(2,'0')}`;
+          todayValue = `${localToday.getFullYear()}-${String(localToday.getMonth()+1).padStart(2,'0')}-${String(localToday.getDate()).padStart(2,'0')}`;
+          dateInput.min = todayValue;
+          displayedMonth = new Date(localToday.getFullYear(), localToday.getMonth(), 1);
+          renderCalendar();
           const configResponse = await fetch('/api/config', { cache: 'no-store' });
           const config = await configResponse.json();
           if (!configResponse.ok) throw new Error(config.error?.message || '決済設定を確認できません。');
@@ -110,12 +119,60 @@
         updateTotal();
       }));
 
-      document.getElementById('date').addEventListener('change', (event) => {
-        if (!event.target.value) return;
-        const picked = new Date(`${event.target.value}T00:00:00`);
-        document.getElementById('date-display').textContent = new Intl.DateTimeFormat('ja-JP', {
-          year: 'numeric', month: 'long', day: 'numeric', weekday: 'short',
-        }).format(picked);
+      function formatJapaneseDate(value) {
+        const [year, month, day] = value.split('-').map(Number);
+        const weekday = new Intl.DateTimeFormat('ja-JP', { weekday: 'short' }).format(new Date(year, month - 1, day));
+        return `${year}年${month}月${day}日(${weekday})`;
+      }
+
+      function renderCalendar() {
+        const year = displayedMonth.getFullYear();
+        const month = displayedMonth.getMonth();
+        calendarMonth.textContent = `${year}年${month + 1}月`;
+        calendarDays.replaceChildren();
+        const firstWeekday = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const firstAllowedMonth = new Date(Number(todayValue.slice(0, 4)), Number(todayValue.slice(5, 7)) - 1, 1);
+        document.getElementById('calendar-prev').disabled = displayedMonth <= firstAllowedMonth;
+        for (let i = 0; i < firstWeekday; i++) calendarDays.append(document.createElement('span'));
+        for (let day = 1; day <= daysInMonth; day++) {
+          const value = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.textContent = String(day);
+          button.setAttribute('role', 'gridcell');
+          button.setAttribute('aria-label', formatJapaneseDate(value));
+          button.disabled = value < todayValue;
+          if (value === todayValue) button.classList.add('is-today');
+          if (value === dateInput.value) {
+            button.classList.add('is-selected');
+            button.setAttribute('aria-selected', 'true');
+          }
+          button.addEventListener('click', () => {
+            dateInput.value = value;
+            document.getElementById('date-picker-label').textContent = formatJapaneseDate(value);
+            document.getElementById('date-display').textContent = '参加日を選択しました。';
+            document.getElementById('date-error').hidden = true;
+            calendarPanel.hidden = true;
+            datePickerButton.setAttribute('aria-expanded', 'false');
+            renderCalendar();
+          });
+          calendarDays.append(button);
+        }
+      }
+
+      datePickerButton.addEventListener('click', () => {
+        calendarPanel.hidden = !calendarPanel.hidden;
+        datePickerButton.setAttribute('aria-expanded', String(!calendarPanel.hidden));
+        if (!calendarPanel.hidden) renderCalendar();
+      });
+      document.getElementById('calendar-prev').addEventListener('click', () => {
+        displayedMonth = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth() - 1, 1);
+        renderCalendar();
+      });
+      document.getElementById('calendar-next').addEventListener('click', () => {
+        displayedMonth = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth() + 1, 1);
+        renderCalendar();
       });
 
       document.getElementById('phone').addEventListener('input', (event) => {
@@ -128,7 +185,16 @@
         const phone = document.getElementById('phone');
         const line = document.getElementById('line');
         const email = document.getElementById('email');
-        if (!date.value) { date.reportValidity(); return false; }
+        if (!date.value) {
+          document.getElementById('date-error').hidden = false;
+          if (calendarPanel.hidden) {
+            calendarPanel.hidden = false;
+            datePickerButton.setAttribute('aria-expanded', 'true');
+            renderCalendar();
+          }
+          datePickerButton.focus();
+          return false;
+        }
         if (name.value.trim().length < 2) { name.setCustomValidity('お名前を2文字以上でご入力ください。'); name.reportValidity(); name.setCustomValidity(''); return false; }
         if (!/^[0-9]{9,15}$/.test(phone.value)) { phone.setCustomValidity('電話番号はハイフンなしの数字9～15桁でご入力ください。'); phone.reportValidity(); phone.setCustomValidity(''); return false; }
         if (!line.value.trim()) { line.setCustomValidity('LINE IDをご入力ください。'); line.reportValidity(); line.setCustomValidity(''); return false; }
