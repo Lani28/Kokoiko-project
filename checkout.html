@@ -13,7 +13,7 @@
 </head>
 <body>
   <div class="wrap">
-    <header class="header"><a class="brand" href="/">KOKOIKO TRIP</a><span class="test" id="test-mode">テストモード</span></header>
+    <header class="header"><a class="brand" href="index.html#home">KOKOIKO TRIP</a><span class="test" id="test-mode">テストモード</span></header>
     <main class="main">
       <a class="back" href="/">← 商品ページに戻る</a>
       <div class="heading"><h1>お支払いのお手続き</h1><p>商品内容と金額をご確認のうえ、お支払い方法をお選びください。</p></div>
@@ -126,10 +126,12 @@
         const date = document.getElementById('date');
         const name = document.getElementById('name');
         const phone = document.getElementById('phone');
+        const line = document.getElementById('line');
         const email = document.getElementById('email');
         if (!date.value) { date.reportValidity(); return false; }
         if (name.value.trim().length < 2) { name.setCustomValidity('お名前を2文字以上でご入力ください。'); name.reportValidity(); name.setCustomValidity(''); return false; }
         if (!/^[0-9]{9,15}$/.test(phone.value)) { phone.setCustomValidity('電話番号はハイフンなしの数字9～15桁でご入力ください。'); phone.reportValidity(); phone.setCustomValidity(''); return false; }
+        if (!line.validity.valid) {line.validity(); return false; }
         if (!email.validity.valid) { email.reportValidity(); return false; }
         return true;
       }
