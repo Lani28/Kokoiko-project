@@ -89,6 +89,9 @@
       }
 
       function updateTotal() {
+        document.getElementById('adult-count').textContent = adultCount;
+        document.getElementById('adult-summary').textContent = adultCount;
+        document.getElementById('infant-count').textContent = infantCount;
         if (!unitAmount) return;
         const total = adultCount * unitAmount;
         const formattedUnit = `₩${new Intl.NumberFormat('ja-JP').format(unitAmount)}`;
@@ -96,9 +99,6 @@
         document.getElementById('amount').textContent = formattedUnit;
         document.getElementById('unit-amount').textContent = formattedUnit;
         document.getElementById('total').textContent = formattedTotal;
-        document.getElementById('adult-count').textContent = adultCount;
-        document.getElementById('adult-summary').textContent = adultCount;
-        document.getElementById('infant-count').textContent = infantCount;
       }
 
       document.querySelectorAll('[data-count]').forEach((button) => button.addEventListener('click', () => {
